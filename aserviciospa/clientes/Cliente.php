@@ -1,13 +1,13 @@
 <?php
 require_once ('./../Basedatos.php');
 
-class Perro extends Basedatos {
+class Cliente extends Basedatos {
 
     private $table;
     private $conexion;
 
     public function __construct() {
-        $this->table = "PERROS";
+        $this->table = "CLIENTES";
         $this->conexion = $this->getConexion();
     }
 

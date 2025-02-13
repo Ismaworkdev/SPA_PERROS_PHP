@@ -11,6 +11,7 @@ class Empleado extends Basedatos {
         $this->conexion = $this->getConexion();
     }
 
+    // OBTENER TODOS LOS EMPLEADOS
     public function getAll() {
         try {
             $sql = "SELECT * FROM $this->table";
@@ -21,6 +22,7 @@ class Empleado extends Basedatos {
         }
     }
 
+    // OBTENER UN EMPLEADO POR SU DNI
     public function getUnEmpleado($dni) {
         try {
             $sql = "SELECT * FROM $this->table WHERE Dni = ?";
@@ -32,6 +34,7 @@ class Empleado extends Basedatos {
         }
     }
 
+    // INSERTAR UN NUEVO EMPLEADO
     public function insertEmpleado($data) {
         try {
             $sql = "INSERT INTO $this->table (Dni, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, Cp, Poblacion, Provincia, Tlfno, Profesion) 
@@ -43,6 +46,7 @@ class Empleado extends Basedatos {
         }
     }
 
+    // ACTUALIZAR UN EMPLEADO EXISTENTE
     public function updateEmpleado($data) {
         try {
             $sql = "UPDATE $this->table SET Email = ?, Password = ?, Rol = ?, Nombre = ?, Apellido1 = ?, Apellido2 = ?, Calle = ?, Numero = ?, Cp = ?, Poblacion = ?, Provincia = ?, Tlfno = ?, Profesion = ? WHERE Dni = ?";
@@ -53,6 +57,7 @@ class Empleado extends Basedatos {
         }
     }
 
+    // ELIMINAR UN EMPLEADO
     public function deleteEmpleado($dni) {
         try {
             $sql = "DELETE FROM $this->table WHERE Dni = ?";
