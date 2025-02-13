@@ -1,0 +1,13 @@
+.bg__login{
+    background-image: url(../images/bg__login2.jpg);
+    
+    /* background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.color__login{
+    background-color: #413F40;
+}
