@@ -21,20 +21,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./resources/css/style.css">
 </head>
-<body class="bg__login bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-[#413F40] text-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-        <h2 class="text-2xl font-bold text-center text-white mb-6">Iniciar sesión</h2>
-        <form action="" method="POST" class="space-y-4">
-            <div>
-                <label for="email" class="block text-white">Correo electrónico</label>
-                <input type="email" id="email" name="email" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+<body class="bg-[#E0E0E0] flex items-center justify-center h-screen w-screen">
+    <div class="flex flex-col md:flex-row bg-white rounded-lg shadow-lg w-full h-full">
+        <!-- Imagen independiente -->
+        <div class="img__perro w-full md:w-1/2 flex justify-center items-start bg-gray-200">
+            <h1 class="text-center text-xl mt-6">Bienvenido a <span class="text-3xl ml-1 font-bold"> SpaRibera</span></h1>
+        </div>
+        <!-- Contenedor del formulario -->
+        <div class="w-full md:w-1/2 flex flex-col justify-center p-8">
+            <div class="bg-[#E0E0E0] text-white p-8 rounded-lg shadow-lg w-full">
+                <h2 class="text-2xl font-bold text-center text-black mb-6">Iniciar sesión</h2>
+                <form action="" method="POST" class="space-y-4">
+                    <div>
+                        <label for="email" class="block text-black">Correo electrónico</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block text-black">Contraseña</label>
+                        <input type="password" id="password" name="password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                    </div>
+                    <button type="submit" class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-950 transition">Ingresar</button>
+                </form>
             </div>
-            <div>
-                <label for="password" class="block text-white">Contraseña</label>
-                <input type="password" id="password" name="password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
-            </div>
-            <button type="submit" class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-950 transition">Ingresar</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>
+
