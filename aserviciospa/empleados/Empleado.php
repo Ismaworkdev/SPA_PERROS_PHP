@@ -7,11 +7,10 @@ class Empleado extends Basedatos {
     private $conexion;
 
     public function __construct() {
-        $this->table = "EMPLEADOS"; // Tabla en la BD
+        $this->table = "EMPLEADOS";
         $this->conexion = $this->getConexion();
     }
 
-    // OBTENER TODOS LOS EMPLEADOS
     public function getAll() {
         try {
             $sql = "SELECT * FROM $this->table";
@@ -22,46 +21,43 @@ class Empleado extends Basedatos {
         }
     }
 
-    // OBTENER EMPLEADO POR ID
-    public function getUnEmpleado($id) {
+    public function getUnEmpleado($dni) {
         try {
-            $sql = "SELECT * FROM $this->table WHERE id = ?";
+            $sql = "SELECT * FROM $this->table WHERE Dni = ?";
             $statement = $this->conexion->prepare($sql);
-            $statement->execute([$id]);
+            $statement->execute([$dni]);
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
     }
 
-    // CREAR NUEVO EMPLEADO
-    public function insertEmpleado($nombre, $cargo, $salario) {
+    public function insertEmpleado($data) {
         try {
-            $sql = "INSERT INTO $this->table (nombre, cargo, salario) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO $this->table (Dni, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, Cp, Poblacion, Provincia, Tlfno, Profesion) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute([$nombre, $cargo, $salario]);
+            return $statement->execute(array_values($data));
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
     }
 
-    // ACTUALIZAR EMPLEADO
-    public function updateEmpleado($id, $nombre, $cargo, $salario) {
+    public function updateEmpleado($data) {
         try {
-            $sql = "UPDATE $this->table SET nombre = ?, cargo = ?, salario = ? WHERE id = ?";
+            $sql = "UPDATE $this->table SET Email = ?, Password = ?, Rol = ?, Nombre = ?, Apellido1 = ?, Apellido2 = ?, Calle = ?, Numero = ?, Cp = ?, Poblacion = ?, Provincia = ?, Tlfno = ?, Profesion = ? WHERE Dni = ?";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute([$nombre, $cargo, $salario, $id]);
+            return $statement->execute(array_values($data));
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
     }
 
-    // ELIMINAR EMPLEADO
-    public function deleteEmpleado($id) {
+    public function deleteEmpleado($dni) {
         try {
-            $sql = "DELETE FROM $this->table WHERE id = ?";
+            $sql = "DELETE FROM $this->table WHERE Dni = ?";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute([$id]);
+            return $statement->execute([$dni]);
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
