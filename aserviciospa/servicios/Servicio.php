@@ -1,18 +1,20 @@
 
 <?php
-class Servicio extends Basedatos {
+class Servicio extends Basedatos
+{
 
     private $table;
     private $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->table = "SERVICIOS";
         $this->conexion = $this->getConexion();
     }
 
     // Obtener todos los servicios
-    public function getAll() {
-        $objetosdep = array();
+    public function getAll()
+    {
         try {
             $sql = "SELECT * FROM $this->table";
             $statement = $this->conexion->query($sql);
@@ -25,7 +27,8 @@ class Servicio extends Basedatos {
     }
 
     // Obtener un servicio por su ID
-    public function getUnServicio($id) {
+    public function getUnServicioById($id)
+    {
         try {
             $sql = "SELECT * FROM $this->table WHERE CODIGO=?";
             $sentencia = $this->conexion->prepare($sql);
@@ -41,9 +44,49 @@ class Servicio extends Basedatos {
         }
     }
 
-    // Crear un nuevo servicio
-    public function createServicio($codigo, $nombre, $descripcion, $precio) {
+    // Obtener todos los servicios
+    public function getUnServicioByDni($dni)
+    {
         try {
+            $sql = "SELECT * FROM $this->table WHERE DNI=?";
+            $statement = $this->conexion->prepare($sql);
+            $statement->bindParam(1, $dni);
+            $statement->execute();
+            $registros = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $statement = null;
+            return $registros;
+        } catch (PDOException $e) {
+            return "ERROR AL CARGAR.<br>" . $e->getMessage();
+        }
+    }
+
+    // Crear un nuevo servicio
+    public function createServicio($tipoServicio, $nombre, $descripcion, $precio)
+    {
+        try {
+            if ($tipoServicio == "BELLEZA") {
+                $sql = "SELECT MAX(SUBSTR(codigo, 5)) AS SIGUIENTE FROM SERVICIOS WHERE SUBSTR(codigo, 1, 4) = 'SVBE'";
+            } else if ($tipoServicio == "NUTRICION") {
+                $sql = "SELECT MAX(SUBSTR(codigo, 6)) AS SIGUIENTE FROM SERVICIOS WHERE SUBSTR(codigo, 1, 5) = 'SVNUT'";
+            } else {
+                return "Tipo de servicio no válido.";
+            }
+
+            // Preparar y ejecutar la consulta para obtener el siguiente número del código
+            $sentencia = $this->conexion->prepare($sql);
+            $sentencia->execute();
+            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+            // Si no hay códigos existentes, el siguiente será 1
+            $siguienteCodigo = $resultado['SIGUIENTE'] ? $resultado['SIGUIENTE'] + 1 : 1;
+
+            // Construir el nuevo código
+            if ($tipoServicio == "BELLEZA") {
+                $codigo = "SVBE" . str_pad($siguienteCodigo, 4, "0", STR_PAD_LEFT); // Asegurarse que el código tenga 4 dígitos
+            } elseif ($tipoServicio == "NUTRICION") {
+                $codigo = "SVNUT" . str_pad($siguienteCodigo, 4, "0", STR_PAD_LEFT); // Asegurarse que el código tenga 4 dígitos
+            }
+            
             $sql = "INSERT INTO $this->table (CODIGO, NOMBRE, DESCRIPCION, PRECIO) VALUES (?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $codigo);
@@ -51,14 +94,15 @@ class Servicio extends Basedatos {
             $sentencia->bindParam(3, $descripcion);
             $sentencia->bindParam(4, $precio);
             $sentencia->execute();
-            return "Servicio creado exitosamente";
+            return "Servicio codigo " . $codigo .  " creado exitosamente";
         } catch (PDOException $e) {
-            return "ERROR AL CREAR EL SERVICIO.<br>" . $e->getMessage();
+            return "El servicio ya esta dado de alta o faltan datos";
         }
     }
 
     // Actualizar un servicio existente
-    public function updateServicio($codigo, $nombre, $descripcion, $precio) {
+    public function updateServicio($codigo, $nombre, $descripcion, $precio)
+    {
         try {
             $sql = "UPDATE $this->table SET NOMBRE=?, DESCRIPCION=?, PRECIO=? WHERE CODIGO=?";
             $sentencia = $this->conexion->prepare($sql);
@@ -74,7 +118,8 @@ class Servicio extends Basedatos {
     }
 
     // Eliminar un servicio
-    public function deleteServicio($codigo) {
+    public function deleteServicio($codigo)
+    {
         try {
             $sql = "DELETE FROM $this->table WHERE CODIGO=?";
             $sentencia = $this->conexion->prepare($sql);

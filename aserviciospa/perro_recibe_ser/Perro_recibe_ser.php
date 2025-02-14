@@ -42,21 +42,20 @@ public function getUnRegistro($sr_cod) {
 }
 
 // Crear un nuevo registro
-public function createRegistro($cod_servicio, $ID_Perro, $fecha, $incidencias, $precio_final, $dni) {
+public function createRegistro($cod_servicio, $ID_Perro, $incidencias, $precio_final, $dni) {
     try {
         $sql = "INSERT INTO $this->table (cod_servicio, ID_Perro, Fecha, Incidencias, Precio_final, Dni) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+                VALUES (?, ?, SYSDATE, ?, ?, ?)";
         $sentencia = $this->conexion->prepare($sql);
         $sentencia->bindParam(1, $cod_servicio);
         $sentencia->bindParam(2, $ID_Perro);
-        $sentencia->bindParam(3, $fecha);
         $sentencia->bindParam(4, $incidencias);
         $sentencia->bindParam(5, $precio_final);
         $sentencia->bindParam(6, $dni);
         $sentencia->execute();
-        return "Registro creado exitosamente";
+        return "Servicio SR_COD insertado correctamente";
     } catch (PDOException $e) {
-        return "ERROR AL CREAR EL REGISTRO.<br>" . $e->getMessage();
+        return "La inserccion no se pudo realizar.<br>" . $e->getMessage();
     }
 }
 
