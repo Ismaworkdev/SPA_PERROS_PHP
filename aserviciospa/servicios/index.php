@@ -1,6 +1,6 @@
 <?php
-require_once ('./../Basedatos.php');
-require_once ('./Servicio.php');
+require_once('./../Basedatos.php');
+require_once('./Servicio.php');
 $servicio = new Servicio();
 
 @header("Content-type: application/json");
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = isset($post['nombre']) ? $post['nombre'] : null;
     $descripcion = isset($post['descripcion']) ? $post['descripcion'] : null;
     $precio = isset($post['precio']) ? $post['precio'] : null;
-    
+
     // Llamamos al método createServicio con los parámetros extraídos
     $res = $servicio->createServicio($codigo, $nombre, $descripcion, $precio);
     $resul['resultado'] = $res;
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $nombre = isset($post['nombre']) ? $post['nombre'] : null;
     $descripcion = isset($post['descripcion']) ? $post['descripcion'] : null;
     $precio = isset($post['precio']) ? $post['precio'] : null;
-    
+
     // Llamamos al método createServicio con los parámetros extraídos
     $res = $servicio->updateServicio($codigo, $nombre, $descripcion, $precio);
     $resul['mensaje'] = $res;
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 // Borrar DELETE
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    $codigo=$_GET['codigo'];
+    $codigo = $_GET['codigo'];
     $res = $servicio->deleteServicio($codigo);
     $resul['resultado'] = $res;
     echo json_encode($resul);
@@ -71,5 +71,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 // En caso de que ninguna de las opciones anteriores se haya ejecutado
 header("HTTP/1.1 400 Bad Request");
-
-

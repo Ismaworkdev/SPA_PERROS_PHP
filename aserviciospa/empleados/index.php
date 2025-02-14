@@ -1,6 +1,6 @@
 <?php
-require_once ('./../Basedatos.php');
-require_once ('./Empleado.php');
+require_once('./../Basedatos.php');
+require_once('./Empleado.php');
 
 $empleado = new Empleado();
 
@@ -58,4 +58,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 // METODO NO PERMITIDO
 echo json_encode(["error" => "Método no permitido"]);
 exit();
-?>
