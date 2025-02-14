@@ -10,63 +10,38 @@ class Cliente extends Basedatos {
         $this->table = "CLIENTES";
         $this->conexion = $this->getConexion();
     }
-
-    // OBTENER TODOS LOS CLIENTES
-    public function getAll() {
-        try {
-            $sql = "SELECT * FROM $this->table";
-            $statement = $this->conexion->query($sql);
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
-
-    // OBTENER UN CLIENTE POR SU DNI
-    public function getUnCliente($dni) {
-        try {
-            $sql = "SELECT * FROM $this->table WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            $statement->execute([$dni]);
-            return $statement->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
-
-    // INSERTAR UN NUEVO CLIENTE
+    
+    //B1. Método para insertar un nuevo CLIENTE
     public function insertCliente($data) {
         try {
-            $sql = "INSERT INTO $this->table (Dni, Nombre, Apellido1, Apellido2, Direccion, Tlfno) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+            // Verificar si el DNI ya está registrado
+            $sql_check = "SELECT COUNT(*) FROM $this->table WHERE Dni = ?";
+            $stmt_check = $this->conexion->prepare($sql_check);
+            $stmt_check->execute([$data['Dni']]);
+            if ($stmt_check->fetchColumn() > 0) {
+                return ["error" => "El Cliente ya está dado de alta"];
+            }
+
+            // Insertar el nuevo CLIENTE
+            $sql = "INSERT INTO $this->table (Dni, Nombre, Apellido1, Apellido2, Direccion, Tlfno)
+            VALUES (?,?, ?, ?, ?, ?)";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute(array_values($data));
+
+            // Mensajes de éxito o error
+            if ($statement->execute(array_values($data))) {
+                return ["success" => "Cliente DNI: {$data['Dni']} insertado correctamente"];
+            } else {
+                return ["error" => "Error al insertar el cliente"];
+            }
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
     }
 
-    // ACTUALIZAR UN CLIENTE EXISTENTE
-    public function updateCliente($data) {
-        try {
-            $sql = "UPDATE $this->table SET Nombre = ?, Apellido1 = ?, Apellido2 = ?, Direccion = ?, Tlfno = ? WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            return $statement->execute(array_values($data));
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
+    //B6. Método para borrar un Cliente
 
-     // ELIMINAR UN CLIENTE
-     public function deleteCliente($dni) {
-        try {
-            $sql = "DELETE FROM $this->table WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            return $statement->execute([$dni]);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
+
+    
 
     
 }
