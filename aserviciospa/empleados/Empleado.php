@@ -11,61 +11,33 @@ class Empleado extends Basedatos {
         $this->conexion = $this->getConexion();
     }
 
-    // OBTENER TODOS LOS EMPLEADOS
-    public function getAll() {
-        try {
-            $sql = "SELECT * FROM $this->table";
-            $statement = $this->conexion->query($sql);
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
-
-    // OBTENER UN EMPLEADO POR SU DNI
-    public function getUnEmpleado($dni) {
-        try {
-            $sql = "SELECT * FROM $this->table WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            $statement->execute([$dni]);
-            return $statement->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
-
-    // INSERTAR UN NUEVO EMPLEADO
+    // B4. Método para insertar un nuevo EMPLEADO
     public function insertEmpleado($data) {
         try {
+            // Verificar si el DNI ya está registrado
+            $sql_check = "SELECT COUNT(*) FROM $this->table WHERE Dni = ?";
+            $stmt_check = $this->conexion->prepare($sql_check);
+            $stmt_check->execute([$data['Dni']]);
+            if ($stmt_check->fetchColumn() > 0) {
+                return ["error" => "El Empleado ya está dado de alta"];
+            }
+            // Cifrar la contraseña
+            $data['Password'] = password_hash($data['Password'], PASSWORD_BCRYPT);
+            // Insertar el nuevo EMPLEADO
             $sql = "INSERT INTO $this->table (Dni, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, Cp, Poblacion, Provincia, Tlfno, Profesion) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute(array_values($data));
+            // Mensajes de éxito o error
+            if ($statement->execute(array_values($data))) {
+                return ["success" => "Empleado DNI: {$data['Dni']} insertado correctamente"];
+            } else {
+                return ["error" => "Error al insertar el empleado"];
+            }
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
     }
-
-    // ACTUALIZAR UN EMPLEADO EXISTENTE
-    public function updateEmpleado($data) {
-        try {
-            $sql = "UPDATE $this->table SET Email = ?, Password = ?, Rol = ?, Nombre = ?, Apellido1 = ?, Apellido2 = ?, Calle = ?, Numero = ?, Cp = ?, Poblacion = ?, Provincia = ?, Tlfno = ?, Profesion = ? WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            return $statement->execute(array_values($data));
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
-
-    // ELIMINAR UN EMPLEADO
-    public function deleteEmpleado($dni) {
-        try {
-            $sql = "DELETE FROM $this->table WHERE Dni = ?";
-            $statement = $this->conexion->prepare($sql);
-            return $statement->execute([$dni]);
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
-    }
+    
 }
+
 ?>
