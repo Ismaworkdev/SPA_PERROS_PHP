@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode(["success" => $res]);
 } else {
     echo json_encode(["error" => "Faltan datos"]);
-    exit();
+    exit();  
 }
 
 
