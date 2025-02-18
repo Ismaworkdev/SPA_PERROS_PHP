@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-xl w-full max-w-4xl overflow-hidden">
+    <div class="m-4 flex flex-col md:flex-row bg-white rounded-xl shadow-xl w-full max-w-4xl overflow-hidden">
         <!-- Sección de bienvenida con imagen -->
         <div class="img__perro hidden md:flex md:w-1/2 bg-blue-500 text-gray-500 flex-col justify-start items-center p-6">
             <h1 class="text-3xl font-bold text-center">Bienvenido a</h1>
