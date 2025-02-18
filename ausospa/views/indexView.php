@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login | SpaRibera</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="m-4 flex flex-col md:flex-row bg-white rounded-xl shadow-xl w-full max-w-4xl overflow-hidden">
