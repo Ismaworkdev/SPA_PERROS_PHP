@@ -34,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form action="" method="POST" class="space-y-4">
                     <div>
                         <label for="email" class="block text-black">Correo electrónico</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400 text-black" required>
                     </div>
                     <div>
                         <label for="password" class="block text-black">Contraseña</label>
-                        <input type="password" id="password" name="password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                        <input type="password" id="password" name="password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-400 text-black" required>
                     </div>
                     <!-- AGREGAR OLVIDASTE CONTRASEÑA Y ICONS DE PERROS -->
                     <p class="text-sm text-gray-600 text-center hover:text-blue-500 transition">¿Olvidaste tu contraseña?</p>
