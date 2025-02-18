@@ -11,11 +11,11 @@ $perro = new Perro();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['dni_cliente'])) {
-        $res = $empleado->getperrosCliente($_GET['dni_cliente']);
+        $res = $perro->getperrosCliente($_GET['dni_cliente']);
         echo json_encode($res);
         exit();
     } else {
-        $res = $empleado->getAll();
+        $res = $perro->getAll();
         echo json_encode($res);
         exit();
     }
@@ -35,18 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $n_chip = isset($post['n_chip']) ? $post['n_chip'] : null;
     $sexo = isset($post['sexo']) ? $post['sexo'] : null;
 
-    $res = $empleado->insertPERRO($data);
+    $res = $perro->insertPERRO($DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo);
     echo json_encode(["success" => $res]);
 } else {
     echo json_encode(["error" => "Faltan datos"]);
-    exit();  
+    exit();
 }
 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $CHIP = $_GET['CHIP'];
-    $res = $servicio->deleteEmpleado($CHIP);
+    $res = $servicio->deletePerro($CHIP);
     $resul['resultado'] = $res;
     echo json_encode($resul);
     exit();

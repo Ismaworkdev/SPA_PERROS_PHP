@@ -74,7 +74,7 @@ class Perro extends Basedatos
 
     //El dato que debe facilitarse es el CHIP borrar 
 
-    public function deleteEmpleado($CHIP)
+    public function deletePerro($CHIP)
     {
         try {
             $sql = "DELETE FROM $this->table WHERE CHIP = ?";
