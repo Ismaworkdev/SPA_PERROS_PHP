@@ -39,6 +39,21 @@ class Cliente extends Basedatos {
     }
 
     //B6. Método para borrar un Cliente
+    public function deleteCliente($dni) {
+        try {
+            $sql = "DELETE FROM $this->table WHERE Dni = ?";
+            $statement = $this->conexion->prepare($sql);
+
+            // Mensajes de éxito o error
+            if ($statement->execute([$dni])) {
+                return ["success" => "Cliente DNI: $dni eliminado correctamente"];
+            } else {
+                return ["error" => "Error al eliminar el cliente"];
+            }
+        } catch (PDOException $e) {
+            return ["error" => $e->getMessage()];
+        }
+    }
 
 
     
