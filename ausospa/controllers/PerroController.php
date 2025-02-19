@@ -18,7 +18,7 @@ class PerroController
     public function getOnePerro($dni_cliente)
     {
         $PerroSelecionado = json_decode(file_get_contents("http://localhost/USB/SPA_PERROS_PHP/aserviciospa/perros/?dni_cliente=" . $dni_cliente), true);
-        $this->view->mostrarRegistros($PerroSelecionado);
+        $this->view->mostrarPerros($PerroSelecionado);
     }
 
 

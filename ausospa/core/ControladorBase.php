@@ -1,16 +1,19 @@
 <?php
 
-class ControladorBase {
+class ControladorBase
+{
 
-    public function __construct() {
-       //  require_once 'Basedatos.php';
+    public function __construct()
+    {
+        //  require_once 'Basedatos.php';
         //Incluir todos los modelos
         foreach (glob("modelo/*.php") as $file) {
             require_once $file;
         }
     }
 
-    public function url($controlador = CONTROLADOR_DEFECTO, $accion = ACCION_DEFECTO, $num = "") {
+    public function url($controlador = CONTROLADOR_DEFECTO, $accion = ACCION_DEFECTO, $num = "")
+    {
 
         if ($num == "") {
             $urlString = "index.php?controller=" . $controlador . "&action=" . $accion;
@@ -53,19 +56,18 @@ class ControladorBase {
          * */
     }
 
-    public function view($vista, $data) {
+    public function view($vista, $data)
+    {
         foreach ($data as $id_assoc => $value) {
             ${$id_assoc} = $value;
         }
-     //   require_once 'vista/comun/cabecera.php';
+        //   require_once 'vista/comun/cabecera.php';
         require_once 'vista/' . $vista . 'View.php';
-      //  require_once 'vista/comun/pie.php';
+        //  require_once 'vista/comun/pie.php';
     }
 
-    public function redirect($controlador = CONTROLADOR_DEFECTO, $accion = ACCION_DEFECTO) {
+    public function redirect($controlador = CONTROLADOR_DEFECTO, $accion = ACCION_DEFECTO)
+    {
         header("Location:index.php?controller=" . $controlador . "&action=" . $accion);
     }
-
 }
-
-?>
