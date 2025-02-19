@@ -3,6 +3,8 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+
+    // If login() => Header("Location: ./dashboard.php")
     
     // PRUEBA DE CREDENCIALES
     if ($email === "admin@example.com" && $password === "1234") {
