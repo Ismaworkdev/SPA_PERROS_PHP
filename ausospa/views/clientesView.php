@@ -1,42 +1,33 @@
 <?php
 // require_once(__DIR__.'/../controllers/WebController.php');
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | SpaRibera</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./../resources/css/style.css">
-</head>
-<body>
     <?php
     include_once(__DIR__.'/Header.php');
     ?>
 
-    <main class="">
+    <main class="p-4 flex justify-center align-center gap-4">
         <?php
+            // $webController=new WebController();
             // listar_clientes();
         ?>
 
         <!-- Formulario Añadir Cliente -->
-        <form method="POST" class="flex-col">
+        <form method="POST" class="flex flex-col gap-4 w-full max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
             <h2 class="font-bold text-xl text-center text-blue-800">Añadir nuevo cliente</h2>
-            <input placeholder="DNI" type="text" name="dni" id="dni">
-            <input placeholder="NOMBRE" type="text" name="nombre" id="nombre">
-            <input placeholder="PRIMER APELLIDO" type="text" name="apellido1" id="apellido1">
-            <input placeholder="SEGUNDO APELLIDO" type="text" name="apellido2" id="apellido2">
-            <input placeholder="DIRECCIÓN" type="text" name="direccion" id="direccion">
-            <input placeholder="TELÉFONO" type="text" name="telefono" id="telefono">
-            <button type="submit">Añadir</button>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="DNI" type="text" name="post_dni" id="dni" required>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="NOMBRE" type="text" name="post_nombre" id="nombre" required>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="PRIMER APELLIDO" type="text" name="post_apellido1" id="apellido1" required>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="SEGUNDO APELLIDO" type="text" name="post_apellido2" id="apellido2" required>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="DIRECCIÓN" type="text" name="post_direccion" id="direccion" required>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="TELÉFONO" type="text" name="post_telefono" id="telefono" required>
+            <button class="w-[150px] h-[50px] mx-auto shadow-lg rounded-lg hover:bg-gray-100" type="submit">Añadir</button>
         </form>
 
         <!-- Formulario Eliminar Cliente -->
-        <form method="POST" class="">
-            <h2>Eliminar cliente</h2>
+        <form method="DELETE" class="flex flex-col gap-4 w-full max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
+            <h2 class="font-bold text-xl text-center text-blue-800">Eliminar cliente</h2>
+            <input class="px-2 rounded-md border-2 border-blue-500 focus:outline-0 focus:border-blue-800 focus:bg-gray-100" placeholder="DNI" type="text" name="delete_dni" id="dni" required>
+            <button class="w-[150px] h-[50px] mx-auto shadow-lg rounded-lg hover:bg-gray-100" type="submit">Eliminar</button>
         </form>
     </main>
     
