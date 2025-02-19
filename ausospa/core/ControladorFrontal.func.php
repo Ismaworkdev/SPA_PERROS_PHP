@@ -9,7 +9,7 @@ function cargarControlador($controller){
     if(!is_file($strFileController)){
         $strFileController='controller/'.ucwords(CONTROLADOR_DEFECTO).'Controller.php';
     }
-    //Incluye el ficheroy lo devuelve
+    //Incluye el fichero y lo devuelve
     require_once $strFileController;
     $controllerObj=new $controlador();
     return $controllerObj;
