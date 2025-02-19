@@ -1,7 +1,3 @@
-<?php
-// require_once(__DIR__.'/../controllers/WebController.php');
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
