@@ -15,7 +15,7 @@ class PerroController
 
 
     //GET Un perro para Por cleinte 
-    public function getOnePerro($dni_cliente)
+    public function getAllPerro($dni_cliente)
     {
         $PerroSelecionado = json_decode(file_get_contents("http://localhost/USB/SPA_PERROS_PHP/aserviciospa/perros/?dni_cliente=" . $dni_cliente), true);
         $this->view->mostrarPerros($PerroSelecionado);
@@ -27,13 +27,17 @@ class PerroController
 
     public function DeleteOnePerro($CHIP)
     {
+
         $PerroSelecionado = curl_init("http://localhost/USB/SPA_PERROS_PHP/aserviciospa/perros/?dni_cliente=" . $CHIP);
         curl_setopt($PerroSelecionado, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($PerroSelecionado, CURLOPT_CUSTOMREQUEST, 'DELETE');
         $response = curl_exec($PerroSelecionado);
         curl_close($PerroSelecionado);
-        $this->view->mostrarMensaje($response);
+        $this->view->mostrarmensaje($response);
     }
+
+
+
 
 
     //POST Perro 
