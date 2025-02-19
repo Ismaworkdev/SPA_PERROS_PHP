@@ -59,14 +59,14 @@ class Perro extends Basedatos
 
     //(DNI_DUENIO, nombre, fecha_nto, raza, peso, altura, observaciones, n_chip, sexo)
 
-    public function insertPERRO($DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo)
+    public function insertPERRO($info)
     {
-        $data = [$DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo];
+
         try {
             $sql = "INSERT INTO $this->table (DNI_DUENIO, nombre, fecha_nto, raza, peso, altura, observaciones, n_chip, sexo) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $statement = $this->conexion->prepare($sql);
-            return $statement->execute(array_values($data));
+            return $statement->execute(array_values($info));
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }

@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $observaciones = isset($post['observaciones']) ? $post['observaciones'] : null;
     $n_chip = isset($post['n_chip']) ? $post['n_chip'] : null;
     $sexo = isset($post['sexo']) ? $post['sexo'] : null;
-
-    $res = $perro->insertPERRO($DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo);
+    $info = [$DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo];
+    $res = $perro->insertPERRO($info);
     echo json_encode(["success" => $res]);
 } else {
     echo json_encode(["error" => "Faltan datos"]);
