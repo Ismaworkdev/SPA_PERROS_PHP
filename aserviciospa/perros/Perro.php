@@ -51,7 +51,7 @@ class Perro extends Basedatos
             $sql = "SELECT * FROM $this->table WHERE DNI_DUENIO = ?";
             $statement = $this->conexion->prepare($sql);
             $statement->execute([$dni]);
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return ["error" => $e->getMessage()];
         }
