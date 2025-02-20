@@ -8,9 +8,9 @@ include_once(__DIR__ . '/Header.php');
 
         <h1 class="text-center font-extrabold text-xl">Clientes</h1>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./AniadirCliente.php">Añadir Cliente</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsCliente/AniadirCliente.php">Añadir Cliente</a></p>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./EliminarCliente.php">Eliminar Cliente</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsCliente/EliminarCliente.php">Eliminar Cliente</a></p>
 
     </article>
 
@@ -18,9 +18,9 @@ include_once(__DIR__ . '/Header.php');
         
         <h1 class="text-center font-extrabold text-xl">Perros</h1>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./AniadirCliente.php">Añadir Perro</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsPerro/InsertarPerroView.php">Añadir Perro</a></p>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./EliminarCliente.php">Eliminar Perro</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsPerro/EliminarPerroView.php">Eliminar Perro</a></p>
 
     </article>
 
@@ -28,9 +28,9 @@ include_once(__DIR__ . '/Header.php');
         
         <h1 class="text-center font-extrabold text-xl">Servicios</h1>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./AniadirServicio.php">Añadir Servicio</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsServicios/AniadirServicio.php">Añadir Servicio</a></p>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./EliminarServicio.php">Eliminar Servicio</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsServicios/EliminarServicio.php">Eliminar Servicio</a></p>
 
     </article>
 
@@ -38,9 +38,9 @@ include_once(__DIR__ . '/Header.php');
         
         <h1 class="text-center font-extrabold text-xl">Servicios Realizados</h1>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./AniadirServicioRealizado.php">Añadir Servicio Realizado</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsPerroRecibeServicio/AniadirServicioRealizado.php">Añadir Servicio Realizado</a></p>
 
-        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./EliminarServicioRealizado.php">Eliminar Servicio Realizado</a></p>
+        <p class="w-[200px] mx-auto bg-blue-300 rounded-lg hover:bg-blue-500"><a href="./ViewsPerroRecibeServicio/AniadirServicioRealizado.php">Eliminar Servicio Realizado</a></p>
 
     </article>
 </main>
