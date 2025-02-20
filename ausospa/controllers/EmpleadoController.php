@@ -3,11 +3,11 @@
 require_once 'empleadoView.php';
 
 class EmpleadoController {
-    private $empleado;
+    // private $empleado;
     private $empleadoView;
 
     public function __construct(){
-        $this->empleado = new Empleado();
+        // $this->empleado = new Empleado();
         $this->empleadoView = new EmpleadoView();
     }
     

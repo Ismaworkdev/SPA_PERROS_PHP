@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // PRUEBA DE CREDENCIALES
     if ($email === "admin@example.com" && $password === "1234") {
         echo "<script>alert('Inicio de sesión exitoso');</script>";
+        header("Location: ./dashboard.php");
     } else {
         echo "<script>alert('Credenciales incorrectas');</script>";
     }
