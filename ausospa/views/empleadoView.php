@@ -3,7 +3,7 @@ class EmpleadoView {
 
     public function insertarEmpleado() {
        
-        ?>
+?>
         <div class="container rounded p-4 mt-3">
             <h1 class="text-center mt-3 text-success">Insertar Empleado</h1>
             <form action="index.php" method="post">
@@ -46,6 +46,7 @@ class EmpleadoView {
 
             </form>
         </div>
-        <?
+<?php
     }
 }
+?>

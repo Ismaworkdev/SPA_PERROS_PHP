@@ -1,5 +1,5 @@
 <?php
-require_once 'Empleado.php';
+// require_once 'Empleado.php';
 require_once 'empleadoView.php';
 
 class EmpleadoController {
