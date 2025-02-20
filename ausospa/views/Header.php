@@ -26,7 +26,7 @@
         </nav>
 
         <!-- Botón de inicio de sesión -->
-        <button class="bg-white text-blue-500 px-4 py-2 rounded-lg shadow hover:bg-gray-200 transition">
+        <a href="./logout.php" class="bg-white text-blue-500 px-4 py-2 rounded-lg shadow hover:bg-gray-200 transition">
             Cerrar Sesión
-        </button>
+        </a>
     </header>
