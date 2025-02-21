@@ -1,4 +1,3 @@
- $info = [$DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo];
 
 
  <form method="POST" class="flex-col">

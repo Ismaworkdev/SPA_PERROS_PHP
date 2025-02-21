@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $peso = isset($post['peso']) ? $post['peso'] : null;
     $altura = isset($post['altura']) ? $post['altura'] : null;
     $observaciones = isset($post['observaciones']) ? $post['observaciones'] : null;
-    $n_chip = isset($post['n_chip']) ? $post['n_chip'] : null;
+    $Numero_Chip = isset($post['Numero_Chip']) ? $post['Numero_Chip'] : null;
     $sexo = isset($post['sexo']) ? $post['sexo'] : null;
-    $info = [$DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $n_chip, $sexo];
+    $info = [$DNI_DUENIO, $nombre, $fecha_nto, $raza, $peso, $altura, $observaciones, $Numero_Chip, $sexo];
     $res = $perro->insertPERRO($info);
     echo json_encode(["success" => $res]);
 } else {
