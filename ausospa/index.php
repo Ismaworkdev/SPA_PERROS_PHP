@@ -1,4 +1,5 @@
 <?php
+
 //Configuración global. Definición de variables
 require_once 'config/global.php';
 
@@ -12,11 +13,10 @@ require_once 'core/ControladorFrontal.func.php';
 //La mayoría de las peticiones irán por GET.
 //Si no van por get se cargará el controlaor por defecto
 //Utiliza las funciones del ControladorFrontal.func.php
-if(isset($_GET["controller"])){
-    $controllerObj=cargarControlador($_GET["controller"]);
+if (isset($_GET["controller"])) {
+    $controllerObj = cargarControlador($_GET["controller"]);
     lanzarAccion($controllerObj);
-}else{
-    $controllerObj=cargarControlador(CONTROLADOR_DEFECTO);
+} else {
+    $controllerObj = cargarControlador(CONTROLADOR_DEFECTO);
     lanzarAccion($controllerObj);
 }
-?>

@@ -63,7 +63,7 @@ class Perro extends Basedatos
     {
 
         try {
-            $sql = "INSERT INTO $this->table (DNI_DUENIO, nombre, fecha_nto, raza, peso, altura, observaciones, n_chip, sexo) 
+            $sql = "INSERT INTO $this->table (Dni_duenio, Nombre, fecha_Nto, Raza, Peso, Altura, Observaciones, Numero_Chip, Sexo) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $statement = $this->conexion->prepare($sql);
             return $statement->execute(array_values($info));
